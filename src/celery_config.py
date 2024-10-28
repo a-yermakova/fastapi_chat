@@ -1,11 +1,11 @@
 from celery import Celery
 import os
-from redis import REDIS_URL
+from config import REDIS_HOST, REDIS_PORT
 
 celery_app = Celery(
     "notifications",
-    broker=REDIS_URL,
-    backend=REDIS_URL,
+    broker=f"redis://{REDIS_HOST}:{REDIS_PORT}",
+    backend=f"redis://{REDIS_HOST}:{REDIS_PORT}",
 )
 
 celery_app.conf.task_routes = {
