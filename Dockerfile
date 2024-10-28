@@ -5,7 +5,7 @@ RUN mkdir /fastapi_chat
 WORKDIR /fastapi_chat
 
 RUN apt-get update && \
-    apt-get install -y curl libpq-dev gcc && \
+    apt-get install -y curl libpq-dev gcc nginx && \
     apt-get clean
 
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && \
@@ -27,3 +27,5 @@ RUN poetry install --no-root --no-dev
 COPY . .
 
 RUN chmod a+x *.sh
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
