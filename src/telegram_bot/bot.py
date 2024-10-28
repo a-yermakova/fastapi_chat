@@ -31,7 +31,4 @@ async def start_bot():
     await set_commands()
     register_all_handlers(dp)
     await dp.start_polling(bot)
-
-
-if __name__ == "__main__":
-    start_bot()
+    
