@@ -1,0 +1,144 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #213547;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  margin: 0 0 10px;
+}
+
+h4 {
+  margin: 0 0 4px;
+}
+
+h5 {
+  margin: 0;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#chat {
+  margin-top: 20px;
+  width: 400px;
+  height: 460px;
+  overflow: hidden;
+  gap: 10px;
+  border: 2px solid #646cff;
+  border-radius: 6px;
+  background: rgba(100, 108, 255, 0.07);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.info {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #646cff;
+}
+
+.messages-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  height: calc(100% - 166px);
+  overflow-y: auto;
+}
+
+.sent {
+  align-self: flex-end;
+  padding: 6px 12px;
+  border-radius: 6px;
+
+  background-color: rgba(255, 147, 100, 0.37);
+}
+
+.received {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 6px;
+
+  background-color: rgba(100, 201, 255, 0.37);
+}
+
+.input-line {
+  display: flex;
+  gap: 4px;
+  padding: 0 10px;
+}
+.input-line input {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  height: calc(100% - 53px);
+  overflow-y: auto;
+}
+ul h5 {
+  margin-top: 10px;
+  text-align: center;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #646cff;
+  cursor: pointer;
+}
+li:hover {
+  background-color: rgba(100, 136, 255, 0.27);
+}
+
+button {
+  background-color: #f9f9f9;
+  display: block;
+  border: 1px solid #646cff;
+  padding: 4px 8px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
