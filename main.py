@@ -1,6 +1,5 @@
 import asyncio
 
-import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -33,18 +32,8 @@ async def get_index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
-# @app.on_event("startup")
-# async def startup_event():
-#     redis = aioredis.from_url("redis://localhost", encoding="utf8", decode_responses=True)
-#     # FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
-
-
 @app.on_event("startup")
 async def startup_event():
     loop = asyncio.get_event_loop()
     loop.create_task(start_bot())
 
-
-
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
