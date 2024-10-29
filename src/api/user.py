@@ -6,12 +6,12 @@ from src.schemas.user import UserCreate, UserOut, UserLogin
 from src.services.auth import authenticate_user
 from src.services.user import create_user, get_user_by_email, get_users_list
 from src.db import get_async_session
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from src.utils.tokens import create_access_token, verify_access_token, store_token_in_redis, get_token_from_redis, \
     delete_token_from_redis
 
 router = APIRouter(prefix="/users", tags=["Пользователи"])
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+security = HTTPBearer()
 
 
 @router.post("/register", response_model=UserOut)
@@ -58,9 +58,9 @@ async def get_current_user_id_ws(websocket: WebSocket, user_token: str):
 
 
 async def get_current_user_id(
-        token: str = Depends(oauth2_scheme),
+        credentials: Annotated[HTTPAuthorizationCredentials, Depends(security)],
 ):
-    payload = verify_access_token(token)
+    payload = verify_access_token(credentials.credentials)
     if payload is None:
         raise HTTPException(
             status_code=401,
@@ -74,7 +74,7 @@ async def get_current_user_id(
 
     redis_token = await get_token_from_redis(str(user_id))
 
-    if redis_token != token:
+    if redis_token != credentials.credentials:
         raise HTTPException(
             status_code=401,
             detail="Token expired or invalid",

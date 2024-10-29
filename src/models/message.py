@@ -5,7 +5,7 @@ from src.db import Base
 
 
 class Message(Base):
-    __tablename__ = "Сообщения"
+    __tablename__ = "messages"
 
     id = Column(Integer, primary_key=True, index=True)
     sender_id = Column(Integer, ForeignKey("users.id"), nullable=False)
